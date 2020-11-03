@@ -1,7 +1,14 @@
 {
-    "MoviesSource": "http://api.tvmaze.com/shows",
-    "MembersSource": "https://api.tvmaze.com/shows",
-    "ServiceListeningPort": 8000,
-    "ServiceURL" : "/api/persons",
-    "DBConStr": "mongodb://localhost:27017/personsDB"
+    "APISources": {
+        "Movies": "http://api.tvmaze.com/shows",
+        "Members": "https://jsonplaceholder.typicode.com/users"
+    },
+    "Service": {
+        "URL": "/api/movies_sub",
+        "listeningPort": 8000
+    },
+    "MongoDB": {
+        "connectionURL" : "mongodb://localhost:27017",
+        "database": "moviesWS"
+    }
 }

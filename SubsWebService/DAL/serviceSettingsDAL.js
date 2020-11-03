@@ -1,5 +1,5 @@
 // Settings is a read-only file
-const settings = require("jsonfile");
+const jsonfile = require("jsonfile");
 const path = "../Resources/Settings.json";
 
 exports.getObj = () => {
