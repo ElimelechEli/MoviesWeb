@@ -1,6 +1,7 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
+const settings = require("../Models/settings");
 
-mongoose.connect('mongodb://localhost:27017/personsDB')
+mongoose.connect(settings.DBConStr);
 
 const db = mongoose.connection
 
