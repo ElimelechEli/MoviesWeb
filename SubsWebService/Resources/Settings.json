@@ -1,0 +1,7 @@
+{
+    "MoviesSource": "http://api.tvmaze.com/shows",
+    "MembersSource": "https://api.tvmaze.com/shows",
+    "ServiceListeningPort": 8000,
+    "ServiceURL" : "/api/persons",
+    "DBConStr": "mongodb://localhost:27017/personsDB"
+}
