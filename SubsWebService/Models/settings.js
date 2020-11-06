@@ -1,8 +1,6 @@
 const settingDAL = require("../DAL/serviceSettingsDAL");
 
-const settings = () => {
+exports.getSettings = async () => {
     let s = await settingDAL.getObj();
     return s;
 }
-
-module.exports = settings;

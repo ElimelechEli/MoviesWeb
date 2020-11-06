@@ -3,13 +3,21 @@ const jsonfile = require("jsonfile");
 const path = "../Resources/Settings.json";
 
 exports.getObj = () => {
-    return new Promise((resolve, reject)=> {
-        jsonfile.readFile(path, err, obj => {
+    return new Promise((resolve, reject) => {
+        jsonfile.readFile(__dirname + "/" + path, (err, data) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(obj);
+                resolve(data);
             };
         });
     });
+    // const kaka = await jsonfile.readFile(path, function (err, data) {
+    //     if (err) {
+    //         console.log(err);
+    //     } else {
+    //         return data;
+    //     }
+    // })
+    // return kaka
 };

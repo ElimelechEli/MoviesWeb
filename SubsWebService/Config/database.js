@@ -1,16 +1,18 @@
 const mongoose = require("mongoose");
-const SETTINGS = require("../Models/settings");
+const { getSettings } = require("../Models/settings");
 const MEMEBERS = require("../DAL/MembersApiDAL");
 const MOVIES = require("../DAL/MoviesApiDAL");
 
+let settings = getSettings();
+
 // Creates DB if doesn't exist
-mongoose.connect(`${SETTINGS.MongoDB.connectionURL}/${SETTINGS.MongoDB.database}`);
+mongoose.connect(`${settings.MongoDB.connectionURL}/${settings.MongoDB.database}`);
 
 
 const db = mongoose.connection
 
-db.on('error', console.error.bind(console, 'connection error:'));  
-db.once('open', () => {  
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
   console.log(`Connected to the personsDB database`);
 });
 
@@ -33,7 +35,7 @@ getAllMovies();
 
 const getAllMembers = async () => {
   let membersList = await MEMEBERS.getAllUsers();
-  
+
   membersCol.insertMany(membersList, (err) => {
     if (err) {
       console.log(err);
