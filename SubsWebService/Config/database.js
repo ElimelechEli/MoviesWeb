@@ -3,7 +3,9 @@ const SETTINGS = require("../Models/settings");
 const MEMEBERS = require("../DAL/MembersApiDAL");
 const MOVIES = require("../DAL/MoviesApiDAL");
 
+// Creates DB if doesn't exist
 mongoose.connect(`${SETTINGS.MongoDB.connectionURL}/${SETTINGS.MongoDB.database}`);
+
 
 const db = mongoose.connection
 
@@ -12,8 +14,15 @@ db.once('open', () => {
   console.log(`Connected to the personsDB database`);
 });
 
-let membersCol = db.collection('members');
+// Clearing existing data
+db.dropCollection('members')
+  .dropCollection('movies')
+  .dropCollection('subscriptions');
+
+// Creates DB collections (if doesn't exist)
+let membersCol = db.collection('members')
 let moviesCol = db.collection('movies');
+db.collection('subscriptions');
 
 getAllMembers();
 getAllMovies();
@@ -24,6 +33,7 @@ getAllMovies();
 
 const getAllMembers = async () => {
   let membersList = await MEMEBERS.getAllUsers();
+  
   membersCol.insertMany(membersList, (err) => {
     if (err) {
       console.log(err);
